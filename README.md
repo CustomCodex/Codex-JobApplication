@@ -2,6 +2,8 @@
 
 This Discord bot enables you to manage applications for various positions within your Discord server through a simple form system. Applications are submitted via pop-up forms directly in Discord, and the results are sent to a designated channel.
 
+![Codex Job Application](https://i.imgur.com/lWReth7.png)
+
 ## Installation
 
 Follow these steps to install and set up the bot:
@@ -56,6 +58,8 @@ Follow these steps to install and set up the bot:
     *   In "Bot Permissions", select the permissions your bot needs (at least "View Channels", "Send Messages", "Read Message History", "Use Application Commands").
     *   Copy the generated URL.
     *   Open the URL in your browser and select the server where you want to add the bot. Click "Authorize".
+  
+      ![Codex Job Application](https://i.imgur.com/dKeD0Kj.png)
 
 ## Commands
 
