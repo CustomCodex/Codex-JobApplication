@@ -1,94 +1,88 @@
-# Discord Sollicitatie Bot (Application Bot)
+# Discord Sollicitatie Bot
 
-[![Python](https://img.shields.io/badge/Python-3.6+-blue.svg?style=flat-square)](https://www.python.org/)
-[![discord.py](https://img.shields.io/badge/discord.py-v2.x-blueviolet.svg?style=flat-square)](https://discordpy.readthedocs.io/en/stable/)
+Deze Discord bot maakt het mogelijk om sollicitaties voor verschillende functies binnen je Discord server te beheren via een eenvoudig formulier systeem. Sollicitaties worden ingediend via pop-up formulieren direct in Discord en de resultaten worden naar een aangewezen kanaal gestuurd.
 
-This Python script implements a Discord bot that provides a **sollicitatie (application) system** for your Discord server.  Users can easily apply for various roles or positions within your community through interactive forms directly within Discord. The bot streamlines the application process by sending applications to a designated channel and notifying relevant staff members.
+## Installatie
 
-![Codex Refund](https://i.imgur.com/J4xk4BX.png)
+Volg deze stappen om de bot te installeren en op te zetten:
 
-## Description
+1.  **Vereisten:**
+    *   Python 3.8 of hoger is vereist. Je kunt Python downloaden van [python.org](https://www.python.org/).
+    *   Zorg ervoor dat je `pip` hebt geïnstalleerd (meestal meegeleverd met Python).
 
-This bot is designed to simplify the application process for Discord servers, especially for roleplay communities, gaming guilds, or any server that requires applications for specific roles or teams.
+2.  **Installeer de `discord.py` library:**
+    Open je terminal of command prompt en voer het volgende commando uit:
+    ```bash
+    pip install discord.py
+    ```
 
-**Key Features:**
+3.  **Maak een Discord Bot Applicatie:**
+    *   Ga naar de [Discord Developer Portal](https://discord.com/developers/applications).
+    *   Klik op "Create New Application".
+    *   Geef je applicatie een naam (bijvoorbeeld "Sollicitatie Bot") en klik op "Create".
+    *   Ga naar het "Bot" tabblad in het menu aan de linkerkant.
+    *   Klik op "Add Bot".
+    *   Bevestig door op "Yes, do it!" te klikken.
 
-*   **Interactive Application Forms:**  Users can apply for different positions by filling out structured forms directly within Discord modals.
-*   **Customizable Positions:** Easily define the available positions users can apply for (e.g., Police, Ambulance, Moderator, etc.).
-*   **Position-Specific Questions:**  Configure unique sets of questions for each application position, ensuring relevant information is collected.
-*   **Automated Application Submission:** Submitted applications are automatically sent to a designated channel for review.
-*   **Role Notifications:**  The bot can tag a specific role in the application channel to notify staff members of new submissions.
-*   **User-Friendly Commands:** Simple and intuitive slash commands (`/solliciteren`, `/functies`, `/bothelp`) for easy interaction.
-*   **Ephemeral Responses:**  Most bot interactions are ephemeral, meaning only the user interacting with the bot can see the responses, keeping channels clean.
-*   **Informative Embeds:**  Uses Discord embeds to present information in a clear and organized manner.
-*   **"Coding..." Status:**  Sets a custom "Coding..." status to indicate the bot is running and developed by CustomCodex.
+4.  **Verkrijg je Bot Token:**
+    *   Op de "Bot" pagina, klik op "Reset Token".
+    *   **Let op:** Dit token is geheim. Deel het met niemand! Kopieer het token en bewaar het veilig.
 
-## Available Commands
+5.  **Verkrijg Kanaal en Rol ID's:**
+    *   **Zet Developer Mode aan in Discord:** Ga naar Discord Instellingen (tandwiel naast je gebruikersnaam) > Geavanceerd > Developer Mode (inschakelen).
+    *   **Kopieer de Kanaal ID voor sollicitaties:** Ga naar het Discord kanaal waar je de ingediende sollicitaties wilt ontvangen. Rechtermuisklik op het kanaal en kies "ID kopiëren".
+    *   **Kopieer de Notificatie Rol ID:** Ga naar de server instellingen > Rollen. Rechtermuisklik op de rol die je wilt taggen wanneer er een nieuwe sollicitatie is. Kies "ID kopiëren".
 
-*   **/solliciteren**: Starts the application process. Presents users with a dropdown menu to select the position they want to apply for and then opens an interactive form modal.
-*   **/functies**: Displays a list of currently available positions that users can apply for.
-*   **/bothelp**: Shows a help message with information about all available bot commands and their usage.
+6.  **Configureer de Bot Code:**
+    *   Open het `sollicitatie_bot.py` bestand met een teksteditor.
+    *   **Vervang de placeholders:**
+        *   `BOT_TOKEN = 'VUL_IN'` - Vervang dit met het **Bot Token** dat je in stap 4 hebt gekopieerd.
+        *   `NOTIFICATIE_ROL_ID = VUL_IN` - Vervang dit met de **Notificatie Rol ID** die je in stap 5 hebt gekopieerd.
+        *   `KANAL_ID_VOOR_SOLLICITATIES = VUL_IN` - Vervang dit met de **Kanaal ID voor sollicitaties** die je in stap 5 hebt gekopieerd.
 
-## Setup and Installation
-
-1.  **Prerequisites:**
-    *   **Python 3.6 or higher:** Make sure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
-    *   **discord.py library:** Install the discord.py library. It's recommended to use a virtual environment.
+7.  **Start de Bot:**
+    *   Open je terminal of command prompt.
+    *   Navigeer naar de map waar je `sollicitatie_bot.py` hebt opgeslagen.
+    *   Voer het volgende commando uit om de bot te starten:
         ```bash
-        pip install discord.py
+        python sollicitatie_bot.py
         ```
+    *   Je zou een bericht in de terminal moeten zien dat de bot is ingelogd.
 
-2.  **Download the Script:**
-    *   Download the Python script (`your_script_name.py`) from this repository.
+8.  **Nodig de Bot uit naar je Server:**
+    *   Ga terug naar de [Discord Developer Portal](https://discord.com/developers/applications) en selecteer je bot applicatie.
+    *   Ga naar "OAuth2" > "URL Generator".
+    *   Vink in "Scopes" de opties `bot` en `applications.commands` aan.
+    *   Selecteer in "Bot Permissions" de permissies die je bot nodig heeft (minimaal "View Channels", "Send Messages", "Read Message History", "Use Application Commands").
+    *   Kopieer de gegenereerde URL.
+    *   Open de URL in je browser en selecteer de server waar je de bot wilt toevoegen. Klik op "Authorize".
 
-3.  **Bot Token:**
-    *   Create a Discord Bot application at the [Discord Developer Portal](https://discord.com/developers/applications).
-    *   Navigate to your bot application and go to the "Bot" tab.
-    *   Click "Reset Token" to generate a bot token. **Keep this token secure and do not share it publicly.**
-    *   Replace `'YOUR_BOT_TOKEN'` in the script with your actual bot token:
-        ```python
-        BOT_TOKEN = 'YOUR_BOT_TOKEN' # Replace with your real bot token
-        ```
+## Commando's
 
-4.  **Channel and Role IDs:**
-    *   **Notification Role ID:**  Get the ID of the Discord role that should be tagged when a new application is submitted. To get the ID, enable Developer Mode in Discord settings (Appearance -> Advanced), then right-click the role and select "Copy ID".
-    *   **Application Channel ID:** Get the ID of the Discord channel where you want the applications to be sent.  Similarly, right-click the channel and select "Copy ID".
-    *   Replace the placeholder IDs in the script with your actual IDs:
-        ```python
-        NOTIFICATIE_ROL_ID = ENTERHERE  # Replace with the ID of the role to tag
-        KANAL_ID_VOOR_SOLLICITATIES = ENTERHERE # Replace with the ID of the application channel
-        ```
+Zodra de bot is toegevoegd aan je server, kun je de volgende commando's gebruiken door `/` te typen in een tekstkanaal:
 
-5.  **Customize Positions and Forms (Optional):**
-    *   **`FUNCTIES` list:** Modify the `FUNCTIES` list to include the positions relevant to your server.
-    *   **`FORMULIER_VRAGEN` dictionary:**  Customize the questions for each position in the `FORMULIER_VRAGEN` dictionary. Ensure the keys match the `FUNCTIES` list.
+*   **`/solliciteren`**: Start de sollicitatie procedure.
+    *   **Gebruik:** Typ `/solliciteren` in een kanaal en druk op Enter. De bot zal een menu weergeven waarin je een functie kunt selecteren waarvoor je wilt solliciteren. Na het selecteren van een functie, opent er een pop-up formulier waar je de sollicitatie vragen kunt beantwoorden.
+*   **`/functies`**: Bekijk de beschikbare functies om voor te solliciteren.
+    *   **Gebruik:** Typ `/functies` in een kanaal en druk op Enter. De bot zal een lijst van de huidige beschikbare functies weergeven, alleen zichtbaar voor jou.
+*   **`/bothelp`**: Krijg hulp en informatie over de bot commando's.
+    *   **Gebruik:** Typ `/bothelp` in een kanaal en druk op Enter. De bot zal een help bericht weergeven met informatie over alle beschikbare commando's, alleen zichtbaar voor jou.
 
-6.  **Run the Bot:**
-    *   Navigate to the directory where you saved the script in your terminal.
-    *   Run the script using Python:
-        ```bash
-        python your_script_name.py
-        ```
-    *   Invite the bot to your Discord server using the OAuth2 URL generated in the Discord Developer Portal (OAuth2 -> URL Generator, select `applications.commands` and `bot` scopes, and the necessary bot permissions).
+## Aanpassen van Functies en Vragen
 
-## Configuration
+Je kunt de bot eenvoudig aanpassen door de lijsten `FUNCTIES` en de dictionary `FORMULIER_VRAGEN` in het `sollicitatie_bot.py` bestand te bewerken:
 
-You can configure the bot by modifying the following variables in the script:
+*   **`FUNCTIES`**:  Verander de lijst van functienamen om de beschikbare functies voor sollicitaties aan te passen.
+*   **`FORMULIER_VRAGEN`**:  Pas de vragen per functie aan. Voeg meer vragen toe, verwijder vragen, of verander de tekst van de vragen. Zorg ervoor dat de functienamen in `FORMULIER_VRAGEN` overeenkomen met die in de `FUNCTIES` lijst. Je kunt ook Unicode iconen toevoegen aan de vragen om ze visueel aantrekkelijker te maken.
 
-*   **`BOT_TOKEN`**:  **(Required)** Your Discord bot token.
-*   **`NOTIFICATIE_ROL_ID`**: **(Required)** The ID of the Discord role to tag for notifications.
-*   **`KANAL_ID_VOOR_SOLLICITATIES`**: **(Required)** The ID of the Discord channel where applications will be sent.
-*   **`FUNCTIES`**:  A list of strings representing the available positions users can apply for.
-*   **`FORMULIER_VRAGEN`**: A dictionary where keys are position names (matching `FUNCTIES`) and values are lists of questions (strings) for the application form for that position.
+**Let op:** Na het wijzigen van de code, moet je de bot stoppen en opnieuw starten om de veranderingen door te voeren.
 
-## Contributing
+## Probleemoplossing
 
-Contributions to improve the bot are welcome! Feel free to fork this repository, make your changes, and submit a pull request.
+*   **Bot commando's verschijnen niet:** Zorg ervoor dat de bot de permissie "Applicatiecommando's" heeft in je server rollen instellingen. Nodig de bot ook opnieuw uit met de `applications.commands` scope (zie installatie stap 8).
+*   **Foutmelding "Er is een probleem met het indienen van je sollicitatie...":** Controleer **nauwkeurig** of de `NOTIFICATIE_ROL_ID` en `KANAL_ID_VOOR_SOLLICITATIES` correct zijn ingesteld in de code en dat de bot permissies heeft om berichten te sturen naar het sollicitatiekanaal. Bekijk de console output van de bot voor meer gedetailleerde foutmeldingen.
 
-## License
+Voor vragen of hulp, bekijk de GitHub repository: [https://github.com/CustomCodex](https://github.com/CustomCodex)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Credits
-
-Developed by [CustomCodex](https://github.com/CustomCodex) (Bjorn L).
+---
+_Deze sollicitatie bot is ontwikkeld door Bjorn L (CustomCodex) op Github._
